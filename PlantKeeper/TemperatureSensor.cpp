@@ -1,6 +1,3 @@
-
-// TemperatureSensor.cpp
-
 #include "TemperatureSensor.h"
 
 const int TemperatureError = -1000;
@@ -22,9 +19,21 @@ bool TemperatureSetup(int SensorPin)
 // Returns: The current temperature, in degrees Celsius, or int.min if it has not been setup yet
 int TemperatureLoop(int SensorPin)
 {
-  // TOOD: Implement this function
-  Serial.println("Temperature sensor loop not yet implemented");
+  int lm35Pin = A0;
+    int analogValue;
+    float temperature;
 
-  // Return an error
-  return TemperatureError;
+    // read our temperature sensor
+    analogValue = analogRead(lm35Pin);
+
+    // convert the 10bit analog value to celcius
+    temperature = float(analogValue) / 1023;
+    temperature = temperature * 500;
+
+    // print the temperature over serial
+    Serial.print("Temp: ");
+    Serial.print(temperature);
+    Serial.println("C");
+
+    return temperature;
 }
