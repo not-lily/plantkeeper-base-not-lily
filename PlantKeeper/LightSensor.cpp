@@ -21,34 +21,9 @@ const int sensorMin = 0;
 // sensor maximum, discovered through experiment
 const int sensorMax = 800;
 
-int photocellPin = A5;
-  int analogValue;
-  int range;
+int lightValue;
 
-    analogValue = analogRead(photocellPin);
-    range = map(analogValue, sensorMin, sensorMax, 0, 3);
+    lightValue = analogRead(SensorPin);
 
-    switch (range) 
-    {
-        // your hand is on the sensor
-        case 0:
-            Serial.print("Light: ");
-            Serial.println("dark");
-            break;
-        // your hand is close to the sensor
-        case 1:
-            Serial.print("Light: ");
-            Serial.println("dim");
-            break;
-        // your hand is a few inches from the sensor
-        case 2: 
-            Serial.print("Light: ");
-            Serial.println("medium");
-            break;
-        // your hand is nowhere near the sensor
-        case 3:
-            Serial.print("Light: ");
-            Serial.println("bright");
-            break;
-    }
+    return lightValue;
 }

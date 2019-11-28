@@ -7,7 +7,7 @@ const int PinCO2Sensor = 4;
 const int PinpHSensor = 5;
 const int PinAirMoisture = 6;
 const int PinSoilMoisture = 7;
-const int PinLightSensor = 8;
+const int PinLightSensor = A8;
 const int PinDoorSensor = 9;
 const int PinRainGauge = 10;
 
@@ -16,6 +16,9 @@ const int PinOutputTooCold = 13;
 
 const int HotTemperatureThreshold = 30;
 const int ColdTemperatureThreshold = 15;
+
+const int LightBrightnessThreshold = 800;
+const int LightDarknessThreshold = 400;
 
 const unsigned long MillisPerLoop = 100;
 unsigned long TimeMillis = 0;
@@ -29,6 +32,7 @@ void setup()
   pinMode(PinOutputTooCold, OUTPUT);
 
   TemperatureSetup(PinTemperature);
+  LightSetup(PinLightSensor);
 }
 
 // put your main code here, to run repeatedly
@@ -73,5 +77,19 @@ void loop()
   }
 
   TimeMillis = CurrentMillis;
+
+  if (light < LightDarknessThreshold)
+  {
+    Serial.println("Turn on the lights!");
+
+    //digitalWrite(PinOutputDark, 1);
+  }
+
+  if (light > LightBrightnessThreshold)
+  {
+    Serial.println("Danger! Too bright.");
+
+    //digitalWrite(PinOutputDanger, 1);
+  }
 }
 
