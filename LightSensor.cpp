@@ -13,6 +13,9 @@ bool LightSetup(int SensorPin)
   return false;
 }
 
+// Name: LightLoop
+// Parameters: int SensorPin - the pin the sensor is attached to
+// Returns: The current temperature, in degrees Celsius, or int.min if it has not been setup yet
 int LightLoop(int SensorPin)
 {
 const int sensorMin = 0;
